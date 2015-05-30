@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joker.bbiz.dao.BlogDao">
+
+    <resultMap id="BlogMap" type="Blog">
+        <result column="ID" property="id"/>
+        <result column="Title" property="title"/>
+        <result column="Body" property="body"/>
+        <result column="AuthorId" property="authorId"/>
+        <result column="AddTime" property="addTime"/>
+        <result column="UpdateTime" property="updateTime"/>
+    </resultMap>
+
+    <select id="loadBlog" parameterType="String" resultMap="BlogMap">
+        <![CDATA[
+		SELECT
+			ID,
+			Title,
+			Body,
+			AuthorId,
+			AddTime,
+			UpdateTime
+		FROM
+			BMW_Blog
+		WHERE
+			ID = #{id}
+		]]>
+    </select>
+
+    <insert id="addBlog" parameterType="com.joker.bremote.dto.Blog">
+        <![CDATA[
+        INSERT INTO
+			BMW_Blog
+		(
+			Title,
+			Body,
+			AuthorId,
+			AddTime
+		)
+		VALUES
+		(
+			#{title},
+			#{body},
+			#{authorId},
+			now()
+		)
+        ]]>
+
+		<selectKey resultType="java.lang.Integer" keyProperty="id">
+			SELECT @@IDENTITY AS id
+		</selectKey>
+
+    </insert>
+
+</mapper>

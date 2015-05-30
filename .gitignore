@@ -1,0 +1,19 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+.DS_Store
+
+.idea
+blogger-remote/blogger-remote.iml
+blogger-remote/target
+blogger-server/target
+blogger-server/blogger-server.iml
+blogger-web/target
+blogger-web/blogger-web.iml
+blogger-parent.iml

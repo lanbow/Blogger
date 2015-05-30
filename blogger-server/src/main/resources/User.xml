@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joker.bbiz.dao.UserDao">
+	
+    <resultMap id="UserMap" type="User">
+        <result column="ID" property="id"/>
+        <result column="NickName" property="nickName"/>
+        <result column="Gender" property="gender"/>
+        <result column="Age" property="age"/>
+        <result column="Country" property="country"/>
+        <result column="Province" property="province"/>
+		<result column="PassWord" property="passWord"/>
+        <result column="AddTime" property="addTime"/>
+        <result column="UpdateTime" property="updateTime"/>
+    </resultMap>
+
+
+    <select id="loadUser" parameterType="Integer" resultMap="UserMap">
+        <![CDATA[
+		SELECT
+			ID,
+			NickName,
+			Gender,
+			Age,
+			Country,
+			Province,
+			PassWord,
+			AddTime,
+			UpdateTime
+		FROM
+			BMW_User
+		WHERE
+			ID = #{id}
+		]]>
+    </select>
+
+    <insert id="addUser" parameterType="com.joker.bremote.dto.User">
+        <![CDATA[
+        INSERT INTO
+			BMW_User
+		(
+			NickName,
+			Gender,
+			Age,
+			Country,
+			Province,
+			PassWord,
+			AddTime
+		)
+		VALUES
+		(
+			#{nickName},
+			#{gender},
+			#{age},
+			#{country},
+			#{province},
+			#{passWord},
+			now()
+		)
+        ]]>
+        <selectKey resultType="java.lang.Integer" keyProperty="id">
+            SELECT @@IDENTITY AS id
+        </selectKey>
+    </insert>
+	
+</mapper>
