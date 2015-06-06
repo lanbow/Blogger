@@ -3,7 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="blogService" class="com.joker.bbiz.remote.impl.BlogServiceImpl" />
+       <bean id="blogService" class="com.joker.bbiz.remote.impl.BlogServiceImpl" >
+              <property name="blogDao" ref="blogDao"/>
+       </bean>
+
 
        <bean name="/blogService" class="org.springframework.remoting.caucho.HessianServiceExporter">
               <property name="service" ref="blogService" />

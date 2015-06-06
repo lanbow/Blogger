@@ -11,7 +11,7 @@
         <result column="UpdateTime" property="updateTime"/>
     </resultMap>
 
-    <select id="loadBlog" parameterType="String" resultMap="BlogMap">
+    <select id="loadBlog" parameterType="int" resultMap="BlogMap">
         <![CDATA[
 		SELECT
 			ID,
